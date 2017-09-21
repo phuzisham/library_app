@@ -36,10 +36,6 @@ class Book
     @title = attributes.fetch(:title, @title)
     DB.exec("UPDATE books SET title = '#{@title}' WHERE id = #{self.id()};")
 
-    # attributes.fetch(:author_id, []).each() do |author_id|
-    #   DB.exec("INSERT INTO catalog (author_id, book_id) VALUES (#{self.id()}, #{author_id});")
-    # end
-
     attributes.fetch(:author_id, []).each() do |author_id|
       DB.exec("INSERT INTO catalog (book_id, author_id) VALUES (#{self.id()}, #{author_id});")
     end

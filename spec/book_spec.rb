@@ -14,7 +14,6 @@ describe(Book) do
     it('adds a book to the array of saved books') do
       test_book = Book.new({:title => 'Old Man and the Sea', :id => nil})
       test_book.save()
-      # binding.pry
       expect(Book.all()).to(eq([test_book]))
     end
   end

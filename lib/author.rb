@@ -24,13 +24,32 @@ class Author
   end
 
 
-  def save
-    result = DB.exec("INSERT INTO authors (name) VALUES ('#{@name}') RETURNING id;")
-    @id = result.first().fetch("id").to_i()
+  def save()
+    authors = DB.exec("SELECT * FROM authors;")
+    returned_author = ''
+    returned_id = nil
+    
+    authors.each do |author|
+      if @name == author.fetch('name')
+        returned_author = author.fetch('name')
+        returned_id = author.fetch('id').to_i()
+      end
+    end
+
+    if @name == returned_author
+      @id = returned_id
+      else
+        result = DB.exec("INSERT INTO authors (name) VALUES ('#{@name}') RETURNING id;")
+        @id = result.first().fetch("id").to_i()
+    end
+  end
+
+  def join(book_id)
+    DB.exec("INSERT INTO catalog (author_id, book_id) VALUES (#{self.id()}, #{book_id});")
   end
 
   def ==(another_author)
-    self.name().==(another_author.name()).&(self.id().==(another_author.id()))
+    self.name().==(another_author.name())
   end
 
   def update(attributes)

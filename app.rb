@@ -23,10 +23,11 @@ end
 post('/admin') do
   name = params.fetch('name')
   title = params.fetch('title')
-  book = Book.new(:title => title, :id => nil)
-  author = Author.new(:name => name, :id => nil)
+  book = Book.new({:title => title, :id => nil})
+  author = Author.new({:name => name, :id => nil})
   book.save()
   author.save()
+  author.join(book.id)
   erb(:admin)
 end
 #

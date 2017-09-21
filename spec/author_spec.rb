@@ -33,6 +33,10 @@ describe(Author) do
     end
   end
 
+  # describe('#save') do
+  #   it
+  # end
+
   describe("#==") do
     it("is the same author if it has the same name and id") do
       author = Author.new({:name => "Brad Pitt", :id => nil})
