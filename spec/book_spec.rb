@@ -45,30 +45,30 @@ describe(Book) do
       expect(book.title()).to(eq("Oceans Twelve"))
     end
 
-    # it("lets you add an author to a book") do
-    #   book = Book.new({:title => "Oceans Eleven", :id => nil})
-    #   book.save()
-    #   george = Author.new({:name => "George Clooney", :id => nil})
-    #   george.save()
-    #   brad = Author.new({:name => "Brad Pitt", :id => nil})
-    #   brad.save()
-    #   book.update({:author_id => [george.id(), brad.id()]})
-    #   expect(book.authors()).to(eq([george, brad]))
-    # end
+    it("lets you add an author to a book") do
+      book = Book.new({:title => "Oceans Eleven", :id => nil})
+      book.save()
+      george = Author.new({:name => "George Clooney", :id => nil})
+      george.save()
+      brad = Author.new({:name => "Brad Pitt", :id => nil})
+      brad.save()
+      book.update({:author_id => [george.id(), brad.id()]})
+      expect(book.authors()).to(eq([george, brad]))
+    end
   end
 
-  # describe("#authors") do
-  #   it("returns all of the authors in a particular book") do
-  #     book = Book.new({:title => "Oceans Eleven", :id => nil})
-  #     book.save()
-  #     george = Author.new({:name => "George Clooney", :id => nil})
-  #     george.save()
-  #     brad = Author.new({:name => "Brad Pitt", :id => nil})
-  #     brad.save()
-  #     book.update({:author_id => [george.id(), brad.id()]})
-  #     expect(book.authors()).to(eq([george, brad]))
-  #   end
-  # end
+  describe("#authors") do
+    it("returns all of the authors in a particular book") do
+      book = Book.new({:title => "Oceans Eleven", :id => nil})
+      book.save()
+      george = Author.new({:name => "George Clooney", :id => nil})
+      george.save()
+      brad = Author.new({:name => "Brad Pitt", :id => nil})
+      brad.save()
+      book.update({:author_id => [george.id(), brad.id()]})
+      expect(book.authors()).to(eq([george, brad]))
+    end
+  end
 
   describe("#delete") do
     it("lets you delete a book from the database") do
